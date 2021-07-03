@@ -1,5 +1,25 @@
-﻿<h3>AddNewItemForm</h3>
+﻿
+
+
+@inject HttpClient Http
+
+<RadzenTextBox Placeholder="Person Name..." @bind-Value=@Person />
+<RadzenTextBox Placeholder="Item..." @bind-Value=@Item />
+<RadzenButton Click="SubmitNewItem" Text="Submit" />
+
 
 @code {
+
+    public string Person { get; set; }
+    public string Item { get; set; }
+
+    public async Task SubmitNewItem()
+    {
+        var list = new List<TodoItem>(){new TodoItem() {
+            Person = Person,
+            Item = Item
+        }};
+        await Http.PostAsJsonAsync("https://localhost:5003/Todo/todo-items", list);
+    }
 
 }
