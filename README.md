@@ -8,9 +8,16 @@
 * SQL Lite for my datase
 * Portable SQL lite viewer (DB Browser for SQLite)
 
+### About the solutions
 
 
+1) **ServerSideApp** - Sample Blazor Server from visual studio template
+2) **ClientSideApp** - Sample Blazor Client side app from visual studio template
+3) **BackendServer** - Backend server connecting to a database to demonstrate architecture problems. 
+4) **ClientSideTodoApp** -
+5) **ServerSideDesktopApp** - 
 
+Extra: DatabaseBrowser: Zip of DB browser for SQL lite
 
 
 
