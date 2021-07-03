@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ElectronNET.API;
 
 namespace ServerSideDesktopApp
 {
@@ -52,6 +53,18 @@ namespace ServerSideDesktopApp
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+            if (HybridSupport.IsElectronActive) {
+                CreateWindow();
+            }
+        }
+
+        private async void CreateWindow()
+        {
+            var window = await Electron.WindowManager.CreateWindowAsync();
+            window.OnClosed += () => {
+                Electron.App.Quit();
+            };
         }
     }
 }
