@@ -10,12 +10,17 @@
 </RadzenDataGrid>
 
 @code {
+
     public IEnumerable<TodoItem> TodoItems { get; set; } = new List<TodoItem>();
 
     protected override async Task OnInitializedAsync()
     {
+        Log.Debug("Loading Data");
         var res = await Http.GetAsync("https://localhost:5003/Todo/todo-items");
+        Log.Debug($"Response returned with code: {res.StatusCode}");
         var json = await res.Content.ReadAsStringAsync();
+        Log.Debug("Response json: ");
+        Log.Debug(json);
         TodoItems = JsonSerializer.Deserialize<IEnumerable<TodoItem>>(json);
     }
 }
