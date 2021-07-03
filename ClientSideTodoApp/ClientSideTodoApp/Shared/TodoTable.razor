@@ -13,14 +13,36 @@
 
     public IEnumerable<TodoItem> TodoItems { get; set; } = new List<TodoItem>();
 
+    private HubConnection hubConnection;
+
     protected override async Task OnInitializedAsync()
+    {
+        await InitiliazeSignalR();
+        await LoadNewData();
+    }
+
+    private async Task InitiliazeSignalR()
+    {
+        hubConnection = new HubConnectionBuilder()
+           .WithUrl("https://localhost:5003/todoHub")
+           .Build();
+
+        hubConnection.On("TodoItemsSync", async () => {
+            Log.Debug("Recieved sync");
+            await LoadNewData();
+            await InvokeAsync(StateHasChanged);
+        });
+
+        await hubConnection.StartAsync();
+    }
+
+    async Task LoadNewData()
     {
         Log.Debug("Loading Data");
         var res = await Http.GetAsync("https://localhost:5003/Todo/todo-items");
-        Log.Debug($"Response returned with code: {res.StatusCode}");
         var json = await res.Content.ReadAsStringAsync();
-        Log.Debug("Response json: ");
         Log.Debug(json);
         TodoItems = JsonSerializer.Deserialize<IEnumerable<TodoItem>>(json);
+        Log.Debug("TodoItems were updated");
     }
 }
