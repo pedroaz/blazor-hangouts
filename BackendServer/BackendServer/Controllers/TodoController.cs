@@ -32,7 +32,19 @@ namespace BackendServer.Controllers
                 _logger.LogError(e.Message);
                 return BadRequest("Unable to retrieve the todo items");
             }
-            
+        }
+
+        [HttpPost("todo-items")]
+        public async Task<ActionResult<IEnumerable<TodoItem>>> Post([FromBody] IEnumerable<TodoItem> items)
+        {
+            try {
+                await _databaseService.AddTodoItems(items);
+                return Ok("Items added successfully");
+            }
+            catch (Exception e) {
+                _logger.LogError(e.Message);
+                return BadRequest("Unable to add the todo items");
+            }
         }
     }
 }

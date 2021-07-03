@@ -20,5 +20,11 @@ namespace BackendServer.Database
         {
             return await _dbContext.Items.ToListAsync();
         }
+
+        public async Task AddTodoItems(IEnumerable<TodoItem> items)
+        {
+            await _dbContext.AddRangeAsync(items);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace BackendServer.Database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source=C:\Users\Pedro\Desktop\dev\BlazorHangouts\Database\DemoDatabase_1.db");
+            optionsBuilder.UseSqlite(@"Data Source=c:\Users\Pedro\Desktop\dev\BlazorHangouts\BackendServer\BackendServer\SqlLite\DemoDatabase.db");
             base.OnConfiguring(optionsBuilder);
         }
     }
