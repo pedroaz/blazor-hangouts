@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ClientSideTodoApp.Services
+namespace RazorComponents.Services
 {
     public static class Log
     {

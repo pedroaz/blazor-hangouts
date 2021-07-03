@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace ClientSideTodoApp.Models
+namespace RazorComponents.Models
 {
     public class TodoItem
     {

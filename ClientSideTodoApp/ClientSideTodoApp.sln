@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientSideTodoApp", "ClientSideTodoApp\ClientSideTodoApp.csproj", "{C6A396D9-1C39-4F83-BDDC-B945C5D9BEC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientSideTodoApp", "ClientSideTodoApp\ClientSideTodoApp.csproj", "{C6A396D9-1C39-4F83-BDDC-B945C5D9BEC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorComponents", "RazorComponents\RazorComponents.csproj", "{30616BC4-DA6D-4135-BA5C-9A6E9927FE7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C6A396D9-1C39-4F83-BDDC-B945C5D9BEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6A396D9-1C39-4F83-BDDC-B945C5D9BEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6A396D9-1C39-4F83-BDDC-B945C5D9BEC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30616BC4-DA6D-4135-BA5C-9A6E9927FE7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30616BC4-DA6D-4135-BA5C-9A6E9927FE7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30616BC4-DA6D-4135-BA5C-9A6E9927FE7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30616BC4-DA6D-4135-BA5C-9A6E9927FE7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
