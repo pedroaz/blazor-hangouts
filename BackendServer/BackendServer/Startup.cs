@@ -17,6 +17,8 @@ namespace BackendServer
 {
     public class Startup
     {
+        readonly string CorsPolicyName = "myCorsPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,6 +31,16 @@ namespace BackendServer
         {
             services.AddScoped<DatabaseService>();
             services.AddDbContext<TodoItemsContext>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: CorsPolicyName,
+                                  builder => {
+                                      builder.AllowAnyHeader();
+                                      builder.AllowAnyMethod();
+                                      builder.AllowAnyOrigin();
+                                  });
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c => {
@@ -48,6 +60,8 @@ namespace BackendServer
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(CorsPolicyName);
 
             app.UseAuthorization();
 

@@ -1,0 +1,21 @@
+﻿
+@inject HttpClient Http
+
+<RadzenDataGrid Data="@TodoItems">
+    <Columns>
+        <RadzenDataGridColumn TItem="TodoItem" Property="Id" Title="Id" />
+        <RadzenDataGridColumn TItem="TodoItem" Property="Person" Title="Person" />
+        <RadzenDataGridColumn TItem="TodoItem" Property="Item" Title="Item" />
+    </Columns>
+</RadzenDataGrid>
+
+@code {
+    public IEnumerable<TodoItem> TodoItems { get; set; } = new List<TodoItem>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var res = await Http.GetAsync("https://localhost:5003/Todo/todo-items");
+        var json = await res.Content.ReadAsStringAsync();
+        TodoItems = JsonSerializer.Deserialize<IEnumerable<TodoItem>>(json);
+    }
+}
