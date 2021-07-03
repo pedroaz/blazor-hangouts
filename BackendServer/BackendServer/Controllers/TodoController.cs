@@ -46,5 +46,47 @@ namespace BackendServer.Controllers
                 return BadRequest("Unable to add the todo items");
             }
         }
+
+        [HttpPost("todo-items-mocked")]
+        public async Task<ActionResult<IEnumerable<TodoItem>>> AddMockedData()
+        {
+            try {
+                await _databaseService.RemoveItems();
+                await _databaseService.AddMockedItems();
+                return Ok("Add mocked items successfully");
+            }
+            catch (Exception e) {
+                _logger.LogError(e.Message);
+                return BadRequest("Unable to add mocked items");
+            }
+        }
+
+        [HttpDelete("todo-items")]
+        public async Task<ActionResult<IEnumerable<TodoItem>>> Delete([FromBody] IEnumerable<int> ids)
+        {
+            try {
+                await _databaseService.RemoveItems(ids);
+                return Ok("Items removed successfully");
+            }
+            catch (Exception e) {
+                _logger.LogError(e.Message);
+                return BadRequest("Unable to remove the todo items");
+            }
+        }
+
+        [HttpDelete("todo-items-all")]
+        public async Task<ActionResult<IEnumerable<TodoItem>>> DeleteAll()
+        {
+            try {
+                await _databaseService.RemoveItems();
+                return Ok("All items removed successfully");
+            }
+            catch (Exception e) {
+                _logger.LogError(e.Message);
+                return BadRequest("Unable to remove all items");
+            }
+        }
+
+        
     }
 }

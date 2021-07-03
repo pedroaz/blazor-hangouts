@@ -26,5 +26,33 @@ namespace BackendServer.Database
             await _dbContext.AddRangeAsync(items);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task AddMockedItems()
+        {
+            var list = new List<TodoItem>() {
+                new TodoItem() {
+                    Person = "Pedro",
+                    Item = "Work"
+                },
+                new TodoItem() {
+                    Person = "Carol", 
+                    Item = "Work Harder"
+                }
+            };
+            await _dbContext.Items.AddRangeAsync(list);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task RemoveItems(IEnumerable<int> items)
+        {
+            _dbContext.Items.RemoveRange(_dbContext.Items.Where(_ => items.Contains(_.Id)));
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task RemoveItems()
+        {
+            _dbContext.Items.RemoveRange(_dbContext.Items);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
